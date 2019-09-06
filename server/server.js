@@ -9,13 +9,20 @@ app.use( bodyParser.urlencoded( { extended: true } ) );
 
 // globals
 const port = 5000;
+let messages = [];
 
 // spin up server
 app.listen( port, ()=>{
     console.log( 'server up on:', port );
 }) // end server up
 
+app.get( '/messages', ( req, res )=>{
+    console.log( 'in /messages GET' );
+    res.send( messages );
+}) // end /messages GET
+
 app.post( '/messages', ( req, res )=>{
     console.log( 'in /messages POST:', req.body );
-    res.send( 'ribbet' );
+    messages.push( req.body );
+    res.sendStatus( 201 );
 }) //end /messages POST
