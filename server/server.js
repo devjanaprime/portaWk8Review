@@ -16,6 +16,12 @@ app.listen( port, ()=>{
     console.log( 'server up on:', port );
 }) // end server up
 
+app.delete( '/messages', ( req, res )=>{
+    console.log( 'in /messages DELETE' );
+    messages = [];
+    res.sendStatus( 200 );
+}) // end /messages DELETE
+
 app.get( '/messages', ( req, res )=>{
     console.log( 'in /messages GET' );
     res.send( messages );
